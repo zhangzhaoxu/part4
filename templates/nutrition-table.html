@@ -1,0 +1,55 @@
+<md-data-table-toolbar ng-show="!selected.length">
+  <h2 class="md-title">批阅作业</h2>
+</md-data-table-toolbar>
+
+<md-data-table-toolbar class="alternate" ng-show="selected.length" layout="row" layout-align="space-between">
+  <div>{{selected.length}} {{selected.length > 1 ? 'students' : 'student'}} selected</div>
+  <md-button class="md-fab md-primary md-mini" ng-click="showConfirm($event,selected)">
+    <md-icon md-svg-src="icon/ic_delete_black_24px.svg"></md-icon>
+  </md-button>
+</md-data-table-toolbar>
+
+<md-data-table-container>
+  <table  md-data-table md-row-select="selected" md-progress="deferred">
+    <thead md-order="query.order" md-trigger="onorderchange">
+      <tr>
+        <th ng-repeat="column in columns" ng-attr-order-by="{{column.orderBy}}" ng-attr-numeric="{{column.numeric}}" ng-attr-unit="{{column.unit}}" name="{{column.name}}" ng-attr-descend-first="{{column.descendFirst}}" ng-attr-trim="{{column.trim}}"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr md-auto-select  data-ng-repeat="dessert in desserts.data | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit" ng-click="test()">
+        <td>{{dessert.name}}</td>
+        <td>{{dessert.studentId}}</td>
+        <td>{{dessert.status}}</td>
+        <td>{{dessert.score}}</td>
+        <!--<td>-->
+          <!--<div ng-show="dessert.showEdit" style="cursor: pointer" ng-click="Edit(dessert)"><img ng-src="{{dessert.Edit}}" style="width: 18px;height: 18px"> </div>-->
+          <!--<div ng-show="!dessert.showEdit" style="cursor: pointer" ng-click="Save(dessert)"><img ng-src="{{dessert.Save}}" style="width: 18px;height: 18px"></div>-->
+        <!--</td>-->
+      </tr>
+    </tbody>
+  </table>
+</md-data-table-container>
+
+<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{desserts.count}}" md-trigger="onpagechange"></md-data-table-pagination>
+
+<md-data-table-toolbar ng-show="selected.length" style="height: 250px;padding: 10px" layout="column" layout-align="space-around end">
+  <div layout="row" layout-align="space-around center">
+    <h3>{{selected[0].name}}&nbsp{{selected[0].studentId}}&nbsp下载文件</h3>
+    <md-button class="md-fab md-primary" aria-label="Use Android">
+      <md-icon md-svg-src="icon/ic_delete_black_24px.svg"></md-icon>
+    </md-button>
+  </div>
+  <div style="width: 100%;box-shadow: #cccccc 1px 1px 1px 1px;padding: 5px" layout="row" layout-wrap layout-align="space-around center">
+    <md-input-container class="md-block" flex="80">
+      <label>Remark</label>
+      <input ng-model="selected[0].remark" ng-model-options="{updateOn:'default blur',debounce:{default:2000,blur:0}}">
+    </md-input-container>
+    <div flex="10"></div>
+    <md-input-container class="md-block" flex="80">
+      <label>Score</label>
+      <input ng-model="selected[0].score" ng-model-options="{updateOn:'default blur',debounce:{default:2000,blur:0}}">
+    </md-input-container>
+    <md-button flex="10" class="md-raised md-primary" ng-click="saveRemark(selected)">保存</md-button>
+  </div>
+</md-data-table-toolbar>
