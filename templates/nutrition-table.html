@@ -4,9 +4,9 @@
 
 <md-data-table-toolbar class="alternate" ng-show="selected.length" layout="row" layout-align="space-between">
   <div>{{selected.length}} {{selected.length > 1 ? 'students' : 'student'}} selected</div>
-  <md-button class="md-fab md-primary md-mini" ng-click="showConfirm($event,selected)">
-    <md-icon md-svg-src="icon/ic_delete_black_24px.svg"></md-icon>
-  </md-button>
+  <!--<md-button class="md-fab md-primary md-mini" ng-click="showConfirm($event,selected)">-->
+    <!--<md-icon md-svg-src="icon/ic_delete_black_24px.svg"></md-icon>-->
+  <!--</md-button>-->
 </md-data-table-toolbar>
 
 <md-data-table-container>
@@ -37,7 +37,7 @@
   <div layout="row" layout-align="space-around center">
     <h3>{{selected[0].name}}&nbsp{{selected[0].studentId}}&nbsp下载文件</h3>
     <md-button class="md-fab md-primary" aria-label="Use Android">
-      <md-icon md-svg-src="icon/ic_delete_black_24px.svg"></md-icon>
+      <md-icon md-svg-src="icon/ic_vertical_align_bottom_black_24px.svg"></md-icon>
     </md-button>
   </div>
   <div style="width: 100%;box-shadow: #cccccc 1px 1px 1px 1px;padding: 5px" layout="row" layout-wrap layout-align="space-around center">
